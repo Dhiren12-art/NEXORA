@@ -178,6 +178,24 @@
 .back-button:hover {
     opacity: 0.85;
 }
+
+    
+.whatsapp-button {
+    background: #1f8f55;
+    color: #ffffff;
+    border: 1px solid #1f8f55;
+}
+
+.telegram-button {
+    background: #238acb;
+    color: #ffffff;
+    border: 1px solid #238acb;
+}
+
+.whatsapp-button:hover,
+.telegram-button:hover {
+    opacity: 0.85;
+}
     
     
   </style>
@@ -233,10 +251,14 @@
         
 ${data.source_url ? `<div class="feed-source"><a href="${data.source_url}" target="_blank" rel="noopener noreferrer">Read the original report ↗</a></div>` : ""}
 <hr class="article-divider">
+
 <div class="article-actions">
     <button class="share-button" onclick="shareArticle()">↗ Share Article</button>
+    <a class="whatsapp-button" href="https://wa.me/?text=${encodeURIComponent(data.title + ' ' + window.location.href)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a class="telegram-button" href="https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(data.title)}" target="_blank" rel="noopener noreferrer">Telegram</a>
     <a class="back-button" href="index.html">← Back to NEXORA</a>
 </div>
+
 
       `;
 
