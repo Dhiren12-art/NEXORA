@@ -1411,3 +1411,24 @@ a.news-card img {
     transform: translateY(-4px);
     border-left-color: #ff4545 !important;
 }
+
+
+/* NEXORA Premium Cricket Button */
+.cricket-feature-section .read-more {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 14px 24px;
+  border: 1px solid #d6a0a5;
+  border-radius: 30px;
+  color: #e3b5bb;
+  background: transparent;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cricket-feature-section .read-more:hover {
+  background: #d6a0a5;
+  color: #160d12;
+}
