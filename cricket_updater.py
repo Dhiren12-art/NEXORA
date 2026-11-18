@@ -81,7 +81,7 @@ def main():
         params={"on_conflict": "source_url"},
         headers={
             "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
+        
             "Content-Type": "application/json",
             "Prefer": "resolution=merge-duplicates,return=minimal"
         },
