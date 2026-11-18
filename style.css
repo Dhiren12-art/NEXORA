@@ -1445,7 +1445,7 @@ a.news-card img {
 
 @media (max-width: 600px) {
   #liveArticles h2 {
-    font-size: 29px;
+    font-size: 26px;
     line-height: 1.25;
     margin: 32px 0 24px;
   }
