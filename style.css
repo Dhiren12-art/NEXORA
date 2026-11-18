@@ -1432,3 +1432,21 @@ a.news-card img {
   background: #d6a0a5;
   color: #160d12;
 }
+
+/* NEXORA Latest Articles Heading */
+#liveArticles h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(27px, 5vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+  margin: 38px 0 26px;
+  color: #fff0e9;
+}
+
+@media (max-width: 600px) {
+  #liveArticles h2 {
+    font-size: 29px;
+    line-height: 1.25;
+    margin: 32px 0 24px;
+  }
+}
