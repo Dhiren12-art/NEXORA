@@ -241,7 +241,7 @@
 
       const { data, error } = await db
         .from("cricket_feed")
-        .select("id, title, summary, source_name, source_url, image_url, published_at, created_at")
+        .select("id, title, summary, source_name, source_url, image_url, published_at, created_at, article_body")
         .eq("id", id)
         .single();
 
