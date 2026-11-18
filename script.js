@@ -71,8 +71,6 @@ async function loadNexoraArticles() {
   data.forEach(article => {
     const card = document.createElement("a");
 card.href = "read-feed-article.html?id=" + article.id;
-card.target = "_blank";
-card.rel = "noopener noreferrer";
 card.className = "news-card";
 card.style.display = "block";
 card.style.textDecoration = "none";
