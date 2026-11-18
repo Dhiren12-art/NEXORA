@@ -138,6 +138,48 @@
     }
 }
     
+.article-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(214, 160, 165, 0.25);
+    margin: 30px 0 22px;
+}
+
+.article-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+}
+
+.share-button,
+.back-button {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.share-button {
+    background: #d6a0a5;
+    color: #160d12;
+    border: 1px solid #d6a0a5;
+}
+
+.back-button {
+    color: #e3b5bb;
+    border: 1px solid rgba(214, 160, 165, 0.4);
+}
+
+.share-button:hover,
+.back-button:hover {
+    opacity: 0.85;
+}
+    
+    
   </style>
 </head>
 <body>
@@ -188,14 +230,45 @@
         <p class="feed-meta">${date ? new Date(date).toLocaleString() : ""}</p>
         ${data.image_url ? `<img class="feed-image" src="${data.image_url}" alt="">` : ""}
         <div class="feed-summary"></div>
-        ${data.source_url ? `<a class="feed-source" href="${data.source_url}" target="_blank" rel="noopener noreferrer">Read the original report ↗</a>` : ""}
-        <p><a href="index.html" class="feed-source">← Back to NEXORA</a></p>
+        
+${data.source_url ? `<div class="feed-source"><a href="${data.source_url}" target="_blank" rel="noopener noreferrer">Read the original report ↗</a></div>` : ""}
+<hr class="article-divider">
+<div class="article-actions">
+    <button class="share-button" onclick="shareArticle()">↗ Share Article</button>
+    <a class="back-button" href="index.html">← Back to NEXORA</a>
+</div>
+
       `;
 
       articleBox.querySelector("h1").textContent = data.title || "";
       articleBox.querySelector(".feed-summary").textContent = data.summary || "";
     }
 
+ 
+async function shareArticle() {
+    const title = document.querySelector("h1").textContent;
+    const url = window.location.href;
+
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: title,
+                text: "Read this article on NEXORA",
+                url: url
+            });
+        } catch (error) {
+            console.log("Sharing cancelled");
+        }
+    } else {
+        try {
+            await navigator.clipboard.writeText(url);
+            alert("Article link copied!");
+        } catch (error) {
+            prompt("Copy this article link:", url);
+        }
+    }
+}
+    
     loadArticle();
   </script>
 </body>
