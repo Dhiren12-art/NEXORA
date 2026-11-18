@@ -1308,6 +1308,63 @@ a.news-card img {
   font-size: 13px;
 }
 
+
+/* NEXORA PREMIUM HERO UPGRADE */
+
+.hero {
+    position: relative;
+    padding: 90px 20px 85px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(214, 160, 165, 0.16), transparent 65%),
+        linear-gradient(145deg, #1c1019, #080808 85%);
+    border-bottom: 1px solid rgba(214, 160, 165, 0.22);
+}
+
+.hero .gold {
+    color: #e5b2b8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(38px, 7vw, 68px);
+    line-height: 1.12;
+    color: #fff0e9;
+    margin: 18px 0;
+}
+
+.hero h1 span {
+    color: #d6a0a5;
+}
+
+.hero > p:not(.gold) {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #c8b9bd;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 65px 18px;
+    }
+
+    .hero .gold {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+}
+
+
 @media (max-width: 600px) {
   .site-footer {
     padding: 40px 6% 22px;
