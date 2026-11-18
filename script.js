@@ -51,10 +51,9 @@ async function loadNexoraArticles() {
   );
 
   const { data, error } = await db
-    .from("articles")
-    .select("title, excerpt, category, image_url, is_breaking, slug")
-    .eq("status", "published")
-    .order("created_at", { ascending: false });
+    .from("cricket_feed")
+    .select("id, title, summary, source_name, source_url, image_url, published_at, created_at")
+    .order("published_at", { ascending: false });
 
   if (error) {
     section.innerHTML = "<p>Unable to load articles.</p>";
