@@ -274,7 +274,7 @@ ${data.source_url ? `<div class="feed-source"><a href="${data.source_url}" targe
       `;
 
       articleBox.querySelector("h1").textContent = data.title || "";
-      articleBox.querySelector(".feed-summary").textContent = data.summary || "";
+      articleBox.querySelector(".feed-summary").textContent = articleBox.querySelector(".feed-summary").textContent = data.article_body || data.summary || "";
     }
 
  
