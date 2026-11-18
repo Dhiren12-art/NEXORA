@@ -1,0 +1,1319 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #080808;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span, footer span {
+  color: #D6AD55;
+}
+
+#menuBtn {
+  display: none;
+  background: none;
+  border: none;
+  color: #D6AD55;
+  font-size: 25px;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  border-bottom: 1px solid #333;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #D6AD55;
+}
+
+.hero {
+  padding: 65px 20px;
+  background: linear-gradient(120deg, #241b09, #080808);
+}
+
+.gold, 
+/* NEXORA Clean Premium Search */
+
+.hero > input[type="search"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 650px !important;
+  height: 64px !important;
+  box-sizing: border-box !important;
+  margin: 28px 0 0 !important;
+  padding: 0 22px !important;
+  background: #21131c !important;
+  color: #ffffff !important;
+  border: 1px solid #9b687d !important;
+  border-radius: 14px !important;
+  font-size: 16px !important;
+  outline: none !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+}
+
+.hero > input[type="search"]:focus {
+  border-color: #d6ad55 !important;
+  box-shadow: 0 0 0 3px rgba(214,173,85,0.15) !important;
+}
+
+.hero > input[type="search"]::placeholder {
+  color: #c4aeb8 !important;
+  opacity: 1;
+}
+.card span {
+  color: #D6AD55;
+}
+
+.hero h1 {
+  font-size: 45px;
+  margin: 18px 0;
+}
+
+.hero h1 
+/* NEXORA Premium Search Bar */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 650px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  padding: 0 20px;
+  min-height: 66px;
+  background: linear-gradient(135deg, #291722, #1b1018);
+  border: 1px solid #bd8297;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transition: 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: #d6ad55;
+  box-shadow: 0 0 18px rgba(214,173,85,0.18);
+}
+
+.search-icon {
+  color: #d6ad55;
+  font-size: 30px;
+  margin-right: 14px;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 60px;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.search-box input::placeholder {
+  color: #bdaab4;
+  opacity: 1;
+}
+span {
+  color: #D6AD55;
+}
+
+.hero p {
+  color: #aaa;
+  line-height: 1.7;
+}
+
+.he
+/* NEXORA — PREMIUM BREAKING NEWS CARD */
+
+.breaking-section {
+  background: #1B1018 !important;
+}
+
+.breaking-card {
+  background: linear-gradient(145deg, #35202D, #24151F) !important;
+  border: 1px solid #805568 !important;
+  border-left: 5px solid #D6A0A5 !important;
+  border-radius: 20px !important;
+  padding: 28px !important;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25) !important;
+}
+
+.breaking-label {
+  display: inline-block;
+  background: #633B4B !important;
+  color: #F7EDEB !important;
+  border: 1px solid #D6A0A5;
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.breaking-card h3 {
+  color: #F7EDEB !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 25px;
+  margin-top: 25px;
+}
+
+.breaking-card p {
+  color: #D0BEC5 !important;
+  line-height: 1.8;
+}
+
+.breaking-card .read-more {
+  color: #D6A0A5 !important;
+  font-weight: 700;
+}
+ro input {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin-top: 22px;
+  border: 1px solid #80652e;
+  border-radius: 8px;
+  background: #191919;
+  color: white;
+}
+
+.content {
+  padding: 35px 20px;
+}
+
+.content h2 {
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #171717;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  margin: 12px 0;
+}
+
+.card p {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+footer {
+  padding: 35px 20px;
+  border-top: 1px solid #333;
+  text-align: center;
+  color: #999;
+  line-height: 2;
+}
+
+@media(max-width: 600px) {
+  #menuBtn {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+  }
+
+  nav.show {
+    display: flex;
+  }
+}
+
+/* NEXORA BLUE CARDS */
+a.card,
+a.card:visited {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  color: #ffffff;
+  text-decoration: none;
+  background: #101827;
+  padding: 22px;
+  margin-bottom: 18px;
+  border: 1px solid #2457A7;
+  border-radius: 12px;
+}
+
+a.card h3 {
+  color: #4D9FFF;
+  margin: 12px 0;
+}
+
+a.card p {
+  color: #aaaaaa;
+  line-height: 1.6;
+}
+
+a.card span {
+  color: #4D9FFF;
+}
+
+a.card:hover {
+  border-color: #4D9FFF;
+}
+
+/* FEATURED CRICKET IMAGE */
+.article-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+.read-more {
+  display: inline-block;
+  color: #4D9FFF;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.read-more:hover {
+  color: #80BBFF;
+}
+
+/* NEXORA CRICKET NEWS TICKER */
+
+.news-ticker {
+  display: flex;
+  align-items: center;
+  background: #101827;
+  border-top: 1px solid #2457A7;
+  border-bottom: 1px solid #2457A7;
+  height: 48px;
+  overflow: hidden;
+}
+
+.ticker-label {
+  background: #2457A7;
+  color: white;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.ticker-content {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-text {
+  display: inline-block;
+  padding-left: 100%;
+  color: #4D9FFF;
+  font-size: 14px;
+  animation: nexoraTicker 22s linear infinite;
+}
+
+@keyframes nexoraTicker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* NEXORA BREAKING NEWS */
+
+.breaking-card {
+  background: #101827;
+  border: 1px solid #2457A7;
+  border-left: 5px solid #E50914;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.breaking-label {
+  display: inline-block;
+  background: #E50914;
+  color: #ffffff;
+  padding: 7px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.breaking-card h3 {
+  color: #ffffff;
+  margin: 16px 0 10px;
+}
+
+.breaking-card p {
+  color: #aaaaaa;
+  line-height: 1.6;
+}
+
+/* CRICKET NEWS SECTION */
+
+.news-card {
+  background: #111827;
+  border: 1px solid #2457A7;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.news-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.news-card span {
+  color: #4D9FFF;
+  font-size: 13px;
+}
+
+.news-card h3 {
+  color: #ffffff;
+  margin: 12px 0;
+}
+
+.news-card p {
+  color: #aaaaaa;
+  line-height: 1.6;
+}
+
+/* EXPLORE NEXORA CATEGORY TILES */
+
+.explore-section {
+  background: #080B12;
+  border-top: 1px solid #252B38;
+  padding-top: 45px;
+}
+
+.explore-section h2 {
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.explore-section .card {
+  display: inline-block;
+  width: calc(50% - 14px);
+  min-height: 145px;
+  vertical-align: top;
+  box-sizing: border-box;
+  background: linear-gradient(145deg, #111827, #080D18);
+  border: 1px solid #2457A7;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 6px 5px;
+  text-decoration: none;
+}
+
+.explore-section .card span {
+  color: #4D9FFF;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.explore-section .card h3 {
+  color: #ffffff;
+  font-size: 17px;
+  margin: 12px 0;
+}
+
+.explore-section .card p {
+  color: #aaaaaa;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 400px) {
+  .explore-section .card {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
+/* TWO-COLUMN EXPLORE LAYOUT */
+
+.explore-section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.explore-section h2 {
+  grid-column: 1 / -1;
+}
+
+.explore-section .card {
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+/* IMPROVE EXPLORE TEXT READABILITY */
+
+.explore-section .card span {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.explore-section .card h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+
+.explore-section .card p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* NEXORA Premium Article Cover */
+#image:not([hidden]) {
+  display: block;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 18px;
+  margin: 30px 0;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+#image[hidden] {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #image:not([hidden]) {
+    height: 240px;
+    border-radius: 14px;
+    margin: 22px 0;
+  }
+}
+
+/* NEXORA — ROYAL BURGUNDY & ROSE GOLD */
+
+:root {
+  --background: #1B1018;
+  --panel: #2B1925;
+  --accent: #D6A0A5;
+  --border: #633B4B;
+  --text: #F7EDEB;
+  --muted: #D0BEC5;
+}
+
+body {
+  background: var(--background) !important;
+  color: var(--text) !important;
+}
+
+header, footer, nav {
+  background: var(--background) !important;
+  border-color: var(--border) !important;
+}
+
+.logo, header button, .gold {
+  color: var(--accent) !important;
+}
+
+.card, .news-card, .featured-article,
+.article-content-box, .panel {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  color: var(--text) !important;
+}
+
+h1, h2, h3 {
+  color: var(--text) !important;
+}
+
+p {
+  color: var(--muted);
+}
+
+a, nav a:hover, .back-button {
+  color: var(--accent) !important;
+}
+
+button, .back-button {
+  border-color: var(--accent) !important;
+}
+
+footer p {
+  color: var(--muted) !important;
+}
+.card span,
+.news-card span {
+  color: #D6A0A5 !important;
+}
+
+.card a,
+.news-card a {
+  color: #D6A0A5 !important;
+}
+
+/* NEXORA — LUXURY EDITORIAL TYPOGRAPHY */
+
+body {
+  font-family: 'DM Sans', sans-serif !important;
+  letter-spacing: 0.1px;
+  line-height: 1.7;
+}
+
+h1, h2, h3,
+.hero h1,
+.logo {
+  font-family: 'Playfair Display', serif !important;
+  letter-spacing: -0.5px;
+}
+
+.logo {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 8vw, 64px);
+  line-height: 1.12;
+  font-weight: 700;
+}
+
+.content h2 {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 32px;
+}
+
+.card h3,
+.news-card h3 {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 25px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.card p,
+.news-card p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.card,
+.news-card {
+  padding: 22px !important;
+  transition: transform 0.25s ease;
+}
+
+.card:active,
+.news-card:active {
+  transform: scale(0.98);
+}
+
+/* NEXORA — FINAL LUXURY POLISH */
+
+.hero {
+  background: linear-gradient(
+    135deg,
+    #24131F,
+    #130B11
+  ) !important;
+}
+
+.card,
+.news-card,
+.featured-article,
+.panel {
+  background: #2B1925 !important;
+  border: 1px solid #633B4B !important;
+}
+
+.breaking,
+.breaking-badge,
+.badge-breaking {
+  background: #633044 !important;
+  color: #F7EDEB !important;
+  border-color: #D6A0A5 !important;
+}
+
+button,
+input {
+  font-family: 'DM Sans', sans-serif;
+}
+
+input {
+  background: #241720 !important;
+  color: #F7EDEB !important;
+  border: 1px solid #8A596B !important;
+}
+
+input::placeholder {
+  color: #B9A5AE !important;
+}
+
+.gold {
+  color: #D6A0A5 !important;
+}
+
+/* NEXORA — LIVE BREAKING NEWS */
+
+.breaking-label {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  background: #D71920 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 12px 18px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 16px rgba(215,25,32,0.3);
+}
+
+.breaking-label::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  animation: breakingPulse 1s infinite;
+}
+
+@keyframes breakingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.breaking-card {
+  border-left: 6px solid #D71920 !important;
+}
+
+.breaking-card h3 {
+  font-size: 27px !important;
+}
+
+/* NEXORA — PREMIUM SEARCH BAR */
+
+.hero input[type="search"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 62px !important;
+  box-sizing: border-box !important;
+  padding: 0 22px !important;
+  margin-top: 28px !important;
+  background: #241720 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #A87587 !important;
+  border-radius: 12px !important;
+  outline: none !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 17px !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.hero input[type="search"]:focus {
+  border-color: #D6A0A5 !important;
+  box-shadow: 0 0 0 3px rgba(214,160,165,0.15);
+}
+
+.hero input[type="search"]::placeholder {
+  color: #B9A5AE !important;
+  opacity: 1;
+}
+
+/* =================================
+   NEXORA PREMIUM DESIGN UPGRADE
+================================= */
+
+/* Premium typography */
+body {
+  font-family: "DM Sans", Arial, sans-serif;
+  background: #10090e;
+  color: #f7edf0;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.7px;
+  color: #fff5f2;
+}
+
+/* Premium burgundy background */
+header {
+  background: #1b0d16;
+  border-bottom: 1px solid #563344;
+}
+
+.logo {
+  color: #e9aebd;
+  letter-spacing: 5px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: #d6ad55;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(135deg, #210d19, #10090e 85%);
+  padding: 85px 25px;
+}
+
+.hero .gold {
+  color: #e9aebd;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 9vw, 68px);
+  line-height: 1.08;
+}
+
+.hero h1 span {
+  color: #d6ad55;
+}
+
+/* Premium search bar */
+.hero input[type="search"],
+.hero input[type="text"] {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  padding: 20px 22px;
+  border: 1px solid #d99bab;
+  border-radius: 16px;
+  background: #24141e;
+  color: #ffffff;
+  font-size: 17px;
+  outline: none;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.hero input::placeholder {
+  color: #c4aeb8;
+}
+
+.hero input:focus {
+  border-color: #d6ad55;
+  box-shadow: 0 0 0 3px rgba(214,173,85,0.15);
+}
+
+/* Breaking news section */
+.breaking-section {
+  background: #170b13;
+  padding-top: 55px;
+  padding-bottom: 65px;
+}
+
+.breaking-section h2 {
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+.breaking-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #321724, #1b0d16);
+  border: 1px solid #805064;
+  border-left: 8px solid #ed1025;
+  border-radius: 25px;
+  padding: 35px 28px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.breaking-label {
+  display: inline-block;
+  background: #ed1025;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  box-shadow: 0 5px 20px rgba(237,16,37,0.3);
+}
+
+.breaking-card h3 {
+  font-size: 29px;
+  line-height: 1.3;
+  margin-top: 28px;
+}
+
+.breaking-card p {
+  color: #d0bdc6;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.breaking-card .read-more,
+.breaking-card a {
+  color: #f0a6b5;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Premium article cards */
+.news-card,
+.card {
+  background: #20121c;
+  border: 1px solid #654052;
+  border-radius: 20px;
+  color: #f7edf0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.news-card h3,
+.card h3 {
+  color: #fff5f2;
+}
+
+.news-card p,
+.card p {
+  color: #c9b9c1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .hero {
+    padding: 65px 20px;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .breaking-section h2 {
+    font-size: 32px;
+  }
+
+  .breaking-card {
+    padding: 28px 22px;
+  }
+
+  .breaking-card h3 {
+    font-size: 26px;
+  }
+}
+
+/* NEXORA Search Bar Alignment Fix */
+
+.hero .search-box {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 18px !important;
+  min-height: 66px;
+}
+
+.hero .search-icon {
+  display: inline-flex !important;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  font-size: 25px;
+}
+
+.hero .search-box input {
+  display: block !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  width: 0 !important;
+  height: 60px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  font-size: 15px !important;
+  text-overflow: ellipsis;
+}
+
+/* NEXORA — HOMEPAGE LAYOUT CORRECTION */
+
+/* Restore clean hero layout */
+.hero {
+  min-height: auto !important;
+  height: auto !important;
+  padding: 65px 22px 55px !important;
+  display: block !important;
+  text-align: left !important;
+  background: linear-gradient(145deg, #210e19, #10090e) !important;
+}
+
+/* Tagline must not look like an input box */
+.hero > p.gold {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 0 28px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #e5a9b8 !important;
+  font-size: 15px !important;
+  letter-spacing: 1.5px !important;
+}
+
+/* Main headline */
+.hero h1 {
+  margin: 0 0 22px !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(42px, 9vw, 60px) !important;
+  line-height: 1.08 !important;
+}
+
+/* Hero description */
+.hero > p:not(.gold) {
+  margin: 0 0 25px !important;
+  color: #c9b9c1 !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+}
+
+/* Search bar */
+.hero > input[type="search"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 60px !important;
+  margin: 0 !important;
+  padding: 0 18px !important;
+  box-sizing: border-box !important;
+  background: #24151e !important;
+  border: 1px solid #93677a !important;
+  border-radius: 13px !important;
+  color: white !important;
+  font-size: 16px !important;
+}
+
+/* Bring Breaking News closer */
+.breaking-section {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+/* Remove unwanted tagline box */
+.hero > p.gold {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  filter: none !important;
+  padding: 0 !important;
+  margin-bottom: 28px !important;
+}
+
+.hero > p.gold::before,
+.hero > p.gold::after {
+  display: none !important;
+  content: none !important;
+}
+/* NEXORA - Spacing Fix */
+.hero {
+  padding-top: 55px !important;
+  padding-bottom: 35px !important;
+  min-height: auto !important;
+}
+
+.breaking-section {
+  padding-top: 40px !important;
+}
+/* NEXORA - Final Spacing Adjustment */
+.hero {
+  margin: 0 !important;
+  padding: 35px 5% 20px !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.hero .gold {
+  margin-top: 0 !important;
+}
+
+.breaking-section {
+  margin-top: 0 !important;
+  padding-top: 25px !important;
+}
+/* NEXORA TWO-COLUMN CATEGORY GRID */
+.content.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.content.explore-grid h2 {
+  grid-column: 1 / -1;
+}
+
+.content.explore-grid .card {
+  margin: 0;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .content.explore-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+/* COMPACT NEXORA CATEGORY CARDS */
+.content.explore-grid {
+  gap: 10px !important;
+align-items: stretch !important;
+}
+
+.content.explore-grid .card {
+  padding: 13px !important;
+  min-height: 0 !important;
+height: 100% !important;
+box-sizing: border-box !important;
+  border-radius: 15px !important;
+}
+
+.content.explore-grid .card span {
+  font-size: 10px !important;
+  margin-bottom: 7px !important;
+}
+
+.content.explore-grid .card h3 {
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+  margin: 7px 0 !important;
+}
+
+.content.explore-grid .card p {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+/* HOMEPAGE - COMPACT EXPLORE CARDS */
+.explore-section {
+  gap: 12px !important;
+  padding: 30px 5% !important;
+}
+
+.explore-section h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 8px !important;
+}
+
+.explore-section .card {
+  padding: 14px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  border-radius: 16px !important;
+}
+
+.explore-section .card span {
+  font-size: 10px !important;
+  margin-bottom: 7px !important;
+}
+
+.explore-section .card h3 {
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+  margin: 7px 0 !important;
+}
+
+.explore-section .card p {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 480px) {
+  .explore-section {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+/* NEXORA — Breaking News refinement */
+
+.breaking-section {
+  padding-top: 35px !important;
+  padding-bottom: 40px !important;
+}
+
+.breaking-section h2 {
+  font-size: clamp(28px, 6vw, 38px) !important;
+  margin-bottom: 20px !important;
+}
+
+.breaking-card {
+  padding: 24px !important;
+  border-radius: 18px !important;
+}
+
+.breaking-card h3 {
+  font-size: 24px !important;
+  line-height: 1.3 !important;
+  margin: 20px 0 12px !important;
+}
+
+.breaking-card p {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+/* Make the entire Breaking News card clickable */
+a.breaking-card {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  padding: 24px !important;
+  border-radius: 18px !important;
+}
+
+a.breaking-card h3,
+a.breaking-card p {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+a.breaking-card:hover {
+  text-decoration: none !important;
+}
+/* Clickable cricket feature card */
+a.news-card {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  border-radius: 18px !important;
+}
+
+a.news-card,
+a.news-card * {
+  text-decoration: none !important;
+}
+
+a.news-card img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto;
+  object-fit: cover;
+}
+/* NEXORA PREMIUM FOOTER */
+.site-footer {
+  background: #10090E;
+  border-top: 1px solid #563344;
+  padding: 55px 6% 25px;
+  margin-top: 0;
+}
+
+.footer-brand h2 {
+  color: #D6A0A5;
+  font-size: 32px;
+  letter-spacing: 6px;
+  margin-bottom: 10px;
+}
+
+.footer-brand h2 span {
+  color: #D6A94F;
+}
+
+.footer-brand p {
+  color: #E9DDE1;
+  margin: 8px 0;
+}
+
+.footer-tagline {
+  color: #C995A3 !important;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 25px;
+  margin: 35px 0;
+}
+
+.footer-links a {
+  color: #D6A0A5;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+}
+
+.footer-bottom {
+  border-top: 1px solid #563344;
+  padding-top: 20px;
+  color: #A99AA1;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding: 40px 6% 22px;
+  }
+
+  .footer-links {
+    gap: 16px 20px;
+  }
+}
