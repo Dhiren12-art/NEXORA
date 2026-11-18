@@ -88,7 +88,7 @@ def main():
         json=articles,
         timeout=30
     )
-
+print("SUPABASE RESPONSE:", response.text)
     response.raise_for_status()
     print(f"Successfully processed {len(articles)} cricket articles.")
 
