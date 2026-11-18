@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA | Cricket Article</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .feed-article {
+      max-width: 850px;
+      margin: 55px auto;
+      padding: 25px;
+      color: #f7eeee;
+    }
+    .feed-category {
+      color: #d6a0a5;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .feed-article h1 {
+      font-size: clamp(32px, 7vw, 54px);
+      line-height: 1.15;
+      margin: 22px 0;
+    }
+    .feed-meta {
+      color: #c5a9b3;
+      margin-bottom: 28px;
+    }
+    .feed-image {
+      width: 100%;
+      max-height: 480px;
+      object-fit: contain;
+      background: #10090e;
+      border-radius: 18px;
+      margin-bottom: 28px;
+    }
+    .feed-summary {
+      font-size: 19px;
+      line-height: 1.8;
+      color: #eadde2;
+    }
+    .feed-source {
+      display: inline-block;
+      margin-top: 25px;
+      color: #d6a0a5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NEXORA<span>.</span></div>
+  </header>
+
+  <main class="feed-article" id="article">
+    <p>Loading article...</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://brqsolcojfxldrxfdnax.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_Se2OBOPmRlGVSIvMY-1W-w_tdJq3chD";
+
+    const db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    async function loadArticle() {
+      const articleBox = document.getElementById("article");
+      const id = new URLSearchParams(window.location.search).get("id");
+
+      if (!id) {
+        articleBox.innerHTML = "<p>No article selected.</p>";
+        return;
+      }
+
+      const { data, error } = await db
+        .from("cricket_feed")
+        .select("id, title, summary, source_name, source_url, image_url, published_at, created_at")
+        .eq("id", id)
+        .single();
+
+      if (error || !data) {
+        articleBox.innerHTML = "<p>Unable to load this article. Please try again.</p>";
+        console.error(error);
+        return;
+      }
+
+      const date = data.published_at || data.created_at;
+
+      articleBox.innerHTML = `
+        <p class="feed-category">${data.source_name || "Cricket News"}</p>
+        <h1></h1>
+        <p class="feed-meta">${date ? new Date(date).toLocaleString() : ""}</p>
+        ${data.image_url ? `<img class="feed-image" src="${data.image_url}" alt="">` : ""}
+        <div class="feed-summary"></div>
+        ${data.source_url ? `<a class="feed-source" href="${data.source_url}" target="_blank" rel="noopener noreferrer">Read the original report ↗</a>` : ""}
+        <p><a href="index.html" class="feed-source">← Back to NEXORA</a></p>
+      `;
+
+      articleBox.querySelector("h1").textContent = data.title || "";
+      articleBox.querySelector(".feed-summary").textContent = data.summary || "";
+    }
+
+    loadArticle();
+  </script>
+</body>
+</html>
