@@ -70,7 +70,9 @@ async function loadNexoraArticles() {
 
   data.forEach(article => {
     const card = document.createElement("a");
-card.href = "read-article.html?slug=" + encodeURIComponent(article.slug);
+card.href = article.source_url;
+card.target = "_blank";
+card.rel = "noopener noreferrer";
 card.className = "news-card";
 card.style.display = "block";
 card.style.textDecoration = "none";
@@ -80,10 +82,9 @@ card.style.color = "inherit";
     title.textContent = article.title;
 
     const description = document.createElement("p");
-    description.textContent = article.excerpt;
-
+    description.textContent = article.summary || "";
     const category = document.createElement("span");
-    category.textContent = article.category;
+    category.textContent = article.source_name || "Cricket";
 
     card.append(category, title, description);
 
