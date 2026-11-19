@@ -259,8 +259,7 @@
         <p class="feed-meta">${date ? new Date(date).toLocaleString() : ""}</p>
         ${data.image_url ? `<img class="feed-image" src="${data.image_url}" alt="">` : ""}
         <div class="feed-summary"></div>
-        
-${data.source_url ? `<div class="feed-source"><a href="${data.source_url}" target="_blank" rel="noopener noreferrer">Read the original report ↗</a></div>` : ""}
+        <p class="feed-source">Source: ${data.source_name || "Cricket News"}</p>
 <hr class="article-divider">
 
 <div class="article-actions">
