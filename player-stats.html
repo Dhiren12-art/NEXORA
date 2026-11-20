@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Player Stats | NEXORA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">NEXORA<span>.</span></div>
+  <button id="menuBtn">☰</button>
+</header>
+
+<nav id="navbar">
+  <a href="index.html">Home</a>
+  <a href="cricket.html">Cricket</a>
+  <a href="cricket-centre.html">Cricket Centre</a>
+  <a href="news.html">News</a>
+</nav>
+
+<section style="background:linear-gradient(135deg,#1a0d16,#100810);padding:24px 20px !important;height:auto !important;min-height:0 !important;">
+  <p style="margin:0 0 12px;font-size:14px;">NEXORA SPORTS DESK</p>
+  <h1 style="margin:0 0 12px;line-height:1.2;font-size:clamp(30px,7vw,48px);">Player Statistics<span style="display:inline !important;">.</span></h1>
+  <p style="margin:0;font-size:16px;line-height:1.6;">Explore cricket players, career records and performances across formats and tournaments.</p>
+</section>
+
+<section class="content" id="playerSearch">
+
+  <h2>Find a Player</h2>
+  <p>Search cricket players across international cricket, IPL and other leagues.</p>
+
+  <div class="card">
+    <input
+      type="search"
+      id="playerSearchInput"
+      placeholder="Search any cricket player..."
+      autocomplete="off"
+      style="width:100%;padding:15px;border-radius:10px;border:1px solid #76505f;background:#21151e;color:#fff;font-size:16px;"
+    >
+    <p id="playerSearchMessage">Search by player name.</p>
+    <div id="playerSearchResults"></div>
+  </div>
+
+  <h2>Browse by Format</h2>
+
+<div class="explore-grid">
+  <a class="card" href="player-stats.html?format=test">
+    <h3>Test Cricket</h3>
+    <p>Test career statistics and records.</p>
+  </a>
+
+  <a class="card" href="player-stats.html?format=odi">
+    <h3>ODI Cricket</h3>
+    <p>One Day International performances.</p>
+  </a>
+
+  <a class="card" href="player-stats.html?format=t20i">
+    <h3>T20 International</h3>
+    <p>T20I career statistics and records.</p>
+  </a>
+</div>
+
+<h2>Browse Competitions</h2>
+
+<div class="explore-grid">
+  <a class="card" href="player-stats.html?competition=international">
+    <h3>International Cricket</h3>
+    <p>Players representing their national teams.</p>
+  </a>
+
+  <a class="card" href="player-stats.html?competition=ipl">
+    <h3>Indian Premier League</h3>
+    <p>IPL player profiles and performances.</p>
+  </a>
+
+  <a class="card" href="player-stats.html?competition=leagues">
+    <h3>Other T20 Leagues</h3>
+    <p>Player performances across franchise leagues.</p>
+  </a>
+
+  <a class="card" href="player-stats.html?competition=domestic">
+    <h3>Domestic Cricket</h3>
+    <p>Domestic teams, competitions and player records.</p>
+  </a>
+</div>
+
+</section>
+
+<footer>
+  <p>© 2026 NEXORA. Everything. In One Place.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://brqsolcojfxldrxfdnax.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_Se2OBOPmRlGVSIvMY-1W-w_tdJq3chD";
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+); 
+const playerSearchInput = document.getElementById("playerSearchInput");
+const playerSearchResults = document.getElementById("playerSearchResults");
+
+playerSearchInput.addEventListener("input", async function () {
+  const query = this.value.trim();
+
+  playerSearchResults.innerHTML = "";
+
+  if (query.length < 2) return;
+
+  const { data, error } = await supabaseClient
+    .from("players")
+    .select("id, full_name, country, role, batting_style, bowling_style, formats, competitions, profile_image")
+    .ilike("full_name", `%${query}%`)
+    .limit(10);
+
+  if (error) {
+    playerSearchResults.textContent = "Unable to search players.";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    playerSearchResults.textContent = "No players found.";
+    return;
+  }
+
+  data.forEach(function (player) {
+    const card = document.createElement("a");
+    card.className = "card";
+    card.href = "player-profile.html?id=" + encodeURIComponent(player.id);
+const photo = document.createElement("img");
+if (player.profile_image) {
+    photo.src = player.profile_image;
+    photo.alt = player.full_name;
+    photo.style.width = "75px";
+    photo.style.height = "75px";
+    photo.style.objectFit = "cover";
+    photo.style.borderRadius = "50%";
+    photo.style.marginBottom = "12px";
+    card.appendChild(photo);
+}
+    const name = document.createElement("h3");
+    name.textContent = player.full_name;
+
+    const details = document.createElement("p");
+    details.textContent =
+      (player.country || "") + " • " + (player.role || "Cricketer");
+
+    card.appendChild(name);
+    card.appendChild(details);
+    playerSearchResults.appendChild(card);
+  });
+});
+
+</script>
+  <script src="script.js"></script>
+</body>
+</html>
