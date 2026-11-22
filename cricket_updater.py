@@ -224,11 +224,10 @@ def main():
         f"{SUPABASE_URL}/rest/v1/cricket_feed",
         params={"on_conflict": "source_url"},
         headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "application/json",
-            "Prefer": "resolution=merge-duplicates,return=minimal"
-        },
+    "apikey": SUPABASE_KEY,
+    "Content-Type": "application/json",
+    "Prefer": "resolution=merge-duplicates,return=minimal"
+},
         json=articles,
         timeout=30
     )
