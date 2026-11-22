@@ -18,9 +18,11 @@ FEEDS = {
     "ESPNcricinfo": "https://www.espncricinfo.com/rss/content/story/feeds/0.xml"
 }
 
+
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 NEXORA Cricket News Bot"
+    "User-Agent": "NEXORA-CricketBot/1.0"
 }
+
 
 session = requests.Session()
 session.headers.update(HEADERS)
