@@ -2,11 +2,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cricket | NEXORA</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B1018">
+<title>Cricket News | NEXORA</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.cricket-categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cricket-categories .card {
+  margin: 0;
+}
+
+#liveArticles {
+  padding-top: 25px;
+}
+
+#liveArticles .news-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  margin: 20px 0;
+  background: #2B1925;
+  border: 1px solid #633B4B;
+  border-radius: 18px;
+  padding: 20px;
+}
+
+#liveArticles .news-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+#liveArticles .news-card span {
+  color: #D6A0A5;
+  font-size: 13px;
+}
+
+#liveArticles .news-card h3 {
+  margin: 12px 0;
+}
+
+#liveArticles .news-card p {
+  color: #D0BEC5;
+  line-height: 1.7;
+}
+
+.feed-date {
+  display: block;
+  color: #c5a9b3;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+@media(max-width:420px) {
+  .cricket-categories {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -27,33 +91,11 @@
 
 <div class="news-ticker">
   <div class="ticker-label">LATEST</div>
-
   <div class="ticker-content">
     <div class="ticker-text">
-
-🏏 INDIA CRICKET
-&nbsp; • &nbsp;
-INTERNATIONAL CRICKET
-&nbsp; • &nbsp;
-IPL & WPL
-&nbsp; • &nbsp;
-DOMESTIC CRICKET
-&nbsp; • &nbsp;
-WOMEN'S CRICKET
-&nbsp; • &nbsp;
-U-19 CRICKET
-&nbsp; • &nbsp;
-PLAYER TRANSFERS
-&nbsp; • &nbsp;
-TEAM NEWS
-&nbsp; • &nbsp;
-LIVE SCORES
-&nbsp; • &nbsp;
-MATCH RESULTS
-&nbsp; • &nbsp;
-RECORDS & STATISTICS
-&nbsp; • &nbsp;
-
+      🏏 INDIA CRICKET • INTERNATIONAL CRICKET • IPL & WPL •
+      MATCH RESULTS • PLAYER NEWS • RECORDS & STATISTICS •
+      WOMEN'S CRICKET • DOMESTIC CRICKET
     </div>
   </div>
 </div>
@@ -61,124 +103,48 @@ RECORDS & STATISTICS
 <section class="hero">
   <p class="gold">NEXORA SPORTS DESK</p>
   <h1>Cricket <span>.</span></h1>
-  <p>Latest cricket news, scores, records and match updates.</p>
-</section>
-
-<section class="content explore-grid">
-  <h2>Latest Cricket Updates</h2>
-
-  <div class="card">
-    <span>CRICKET NEWS</span>
-    <h3>Latest Cricket Headlines</h3>
-    <p>Breaking news, player updates and match reports.</p>
-  </div>
-
-  <div class="card">
-    <span>INTERNATIONAL CRICKET</span>
-    <h3>International Matches</h3>
-    <p>Follow international cricket and tournament updates.</p>
-  </div>
-
-  <div class="card">
-    <span>IPL</span>
-    <h3>Indian Premier League</h3>
-    <p>Team news, auctions, fixtures and IPL updates.</p>
-  </div>
-
-  <div class="card">
-    <span>RECORDS</span>
-    <h3>Cricket Records and Stats</h3>
-    <p>Explore player statistics and historic records.</p>
-  </div>
+  <p>Everything happening in the world of cricket, all in one place.</p>
 </section>
 
 <section class="content">
-  <h2>Featured Cricket Article</h2>
+  <h2>Explore Cricket</h2>
 
+  <div class="cricket-categories">
 
-<div class="card featured-article">
+    <div class="card">
+      <span>01 • NEWS</span>
+      <h3>Latest Headlines</h3>
+      <p>Breaking news and cricket updates.</p>
+    </div>
 
-  <img
-    src="cricket-photo.jpg"
-    alt="Cricket match action"
-    class="article-image"
-  >
+    <div class="card">
+      <span>02 • INTERNATIONAL</span>
+      <h3>International Cricket</h3>
+      <p>Teams, series and tournaments.</p>
+    </div>
 
-  <span>FEATURED STORY • CRICKET</span>
+    <div class="card">
+      <span>03 • FRANCHISE</span>
+      <h3>IPL & WPL</h3>
+      <p>Auctions, squads and team news.</p>
+    </div>
 
-  <h3>Welcome to NEXORA Cricket News</h3>
-
-  <p>
-    Get the latest cricket headlines, match reports,
-    player performances, records and tournament updates
-    all in one place.
-  </p>
-<a href="article.html" class="read-more">
-  Read More →
-</a>
-<a href="article.html" class="read-more">
-  </a>
-
-</div>
-
-</section>
-
-<section class="content">
-  <h2>More Cricket Stories</h2>
-
-  <div class="card featured-article">
-
-    <img
-      src="cricket-photo.jpg"
-      alt="Cricket action"
-      class="article-image"
-    >
-
-    <span>CRICKET • FEATURED</span>
-
-    <h3>Top Performances and Unforgettable Moments</h3>
-
-    <p>
-      Explore brilliant batting performances,
-      match-winning bowling spells and memorable
-      moments from the world of cricket.
-    </p>
-
-    <a href="article2.html" class="read-more">
-      Read More →
-    </a>
+    <div class="card">
+      <span>04 • STATISTICS</span>
+      <h3>Records & Stats</h3>
+      <p>Player performances and milestones.</p>
+    </div>
 
   </div>
 </section>
 
-<section class="content">
-  <h2>Latest Cricket News</h2>
+<section class="content" id="cricket-feed-section">
 
-  <div class="card featured-article">
-
-    <img
-      src="cricket-photo.jpg"
-      alt="Cricket match"
-      class="article-image"
-    >
-
-    <span>LATEST UPDATE • CRICKET</span>
-
-    <h3>Records, Rivalries and the Biggest Cricket Moments</h3>
-
-    <p>Published: 17 November 2026</p>
-
-    <p>
-      Discover memorable cricket records, historic
-      rivalries, outstanding performances and
-      stories from international cricket.
-    </p>
-
-    <a href="article3.html" class="read-more">
-      Read More →
-    </a>
-
+  <div id="liveArticles">
+    <h2>Latest Cricket News</h2>
+    <p>Loading the latest articles...</p>
   </div>
+
 </section>
 
 <footer>
@@ -187,6 +153,119 @@ RECORDS & STATISTICS
   <p>© 2026 NEXORA</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navbar = document.getElementById("navbar");
+
+menuBtn.addEventListener("click", function() {
+  navbar.classList.toggle("show");
+});
+
+async function loadCricketNews() {
+
+  const section = document.getElementById("liveArticles");
+
+  const SUPABASE_URL =
+    "https://brqsolcojfxldrxfdnax.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_Se2OBOPmRlGVSIvMY-1W-w_tdJq3chD";
+
+  try {
+
+    const db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    const { data, error } = await db
+      .from("cricket_feed")
+      .select("id,title,summary,source_name,source_url,image_url,published_at,created_at")
+      .order("published_at", { ascending: false })
+      .limit(40);
+
+    if (error) throw error;
+
+    section.innerHTML = "<h2>Latest Cricket News</h2>";
+
+    if (!data || data.length === 0) {
+      section.innerHTML += "<p>No cricket articles available yet.</p>";
+      return;
+    }
+
+    data.forEach(article => {
+
+      const card = document.createElement("a");
+
+      card.href =
+        "read-feed-article.html?id=" +
+        encodeURIComponent(article.id);
+
+      card.className = "news-card";
+
+      if (article.image_url) {
+
+        const image = document.createElement("img");
+
+        image.src = article.image_url;
+        image.alt = article.title || "Cricket news";
+        image.loading = "lazy";
+
+        image.onerror = function() {
+          this.remove();
+        };
+
+        card.appendChild(image);
+      }
+
+      const source = document.createElement("span");
+      source.textContent = article.source_name || "CRICKET";
+
+      const title = document.createElement("h3");
+      title.textContent = article.title || "Cricket Update";
+
+      const summary = document.createElement("p");
+      summary.textContent = article.summary || "";
+
+      card.append(source, title, summary);
+
+      const dateValue =
+        article.published_at || article.created_at;
+
+      if (dateValue) {
+
+        const date = document.createElement("small");
+
+        date.className = "feed-date";
+
+        const parsed = new Date(dateValue);
+
+        date.textContent = Number.isNaN(parsed.getTime())
+          ? ""
+          : parsed.toLocaleString();
+
+        card.appendChild(date);
+      }
+
+      section.appendChild(card);
+
+    });
+
+  } catch (error) {
+
+    console.error("NEXORA Cricket Error:", error);
+
+    section.innerHTML =
+      "<h2>Latest Cricket News</h2>" +
+      "<p>Unable to load cricket news. Please refresh.</p>";
+
+  }
+}
+
+loadCricketNews();
+</script>
+
 </body>
 </html>
