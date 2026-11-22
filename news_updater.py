@@ -128,7 +128,11 @@ def main():
 
         except Exception as error:
             print("FEED ERROR:", source, error)
+    unique_articles = {}
+    for article in articles:
+        unique_articles[article["source_url"]] = article
 
+    articles = list(unique_articles.values())
     if not articles:
         raise SystemExit("No articles fetched.")
 
