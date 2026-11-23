@@ -46,23 +46,41 @@ def valid_image(url, base=None):
         return None
     return url
 
+
 def get_image(entry, link):
-    for field in ["media_thumbnail", "media_content"]:
+    candidates = []
+
+    # Prefer full-size media images over thumbnails
+    for field in ["media_content", "media_thumbnail"]:
         items = entry.get(field, []) or []
         if isinstance(items, dict):
             items = [items]
+
         for item in items:
             if isinstance(item, dict):
                 image = valid_image(item.get("url"), link)
                 if image:
-                    return image
+                    try:
+                        width = int(item.get("width", 0))
+                        height = int(item.get("height", 0))
+                    except (TypeError, ValueError):
+                        width = height = 0
 
+                    candidates.append((width * height, image))
+
+    # Use the largest available image
+    if candidates:
+        candidates.sort(reverse=True)
+        return candidates[0][1]
+
+    # Check image links in the RSS entry
     for item in entry.get("links", []) or []:
         if item.get("type", "").startswith("image/"):
             image = valid_image(item.get("href"), link)
             if image:
                 return image
 
+    # Check the RSS summary for an image
     summary = entry.get("summary", "")
     match = re.search(
         r'<img[^>]+src=["\']([^"\']+)["\']',
@@ -72,20 +90,26 @@ def get_image(entry, link):
     if match:
         return valid_image(match.group(1), link)
 
+    # Last option: publisher's social preview image
     try:
         response = session.get(link, timeout=12)
         response.raise_for_status()
-        match = re.search(
-            r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\'][^>]+content=["\']([^"\']+)',
-            response.text,
-            re.I
-        )
-        if match:
-            return valid_image(match.group(1), response.url)
+
+        patterns = [
+            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
+            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)'
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, response.text, re.I)
+            if match:
+                return valid_image(match.group(1), response.url)
+
     except Exception as error:
         print("Image lookup:", error)
 
     return None
+
 
 SPORT_KEYWORDS = [
     "cricket", "ipl", "t20", "odi", "test match",
