@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA | News Article</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .news-article {
+      max-width: 850px;
+      margin: 45px auto;
+      padding: 28px;
+      background: linear-gradient(145deg,#1b1018,#10090e);
+      border: 1px solid rgba(214,160,165,.2);
+      border-radius: 20px;
+    }
+    .news-article h1 {
+      font-family: Georgia,serif;
+      font-size: clamp(28px,5vw,44px);
+      line-height: 1.2;
+      margin: 22px 0;
+    }
+    .news-meta { color: #c5a9b3; margin-bottom: 22px; }
+    .news-image {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 25px;
+    }
+    .news-summary {
+      color: #eadde2;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+    .news-source, .back-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: #d6a0a5;
+    }
+    @media(max-width:600px) {
+      .news-article { margin:20px 12px; padding:20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NEXORA<span>.</span></div>
+  </header>
+
+  <main class="news-article" id="article">
+    <p>Loading article...</p>
+  </main>
+
+  <script>
+    const URL = "https://brqsolcojfxldrxfdnax.supabase.co";
+    const KEY = "sb_publishable_Se2OBOPmRlGVSIvMY-1W-w_tdJq3chD";
+
+    async function loadArticle() {
+      const box = document.getElementById("article");
+      const id = new URLSearchParams(location.search).get("id");
+
+      if (!id || !/^\d+$/.test(id)) {
+        box.textContent = "No valid article selected.";
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          URL + "/rest/v1/news_feed?id=eq." +
+          encodeURIComponent(id) + "&select=*&limit=1",
+          { headers: { apikey: KEY } }
+        );
+
+        if (!response.ok) throw new Error("Database error " + response.status);
+
+        const rows = await response.json();
+        if (!rows.length) {
+          box.textContent = "Article not found.";
+          return;
+        }
+
+        const article = rows[0];
+        box.replaceChildren();
+
+        const category = document.createElement("p");
+        category.className = "gold";
+        category.textContent = article.source_name || "NEXORA NEWS";
+        box.appendChild(category);
+
+        const heading = document.createElement("h1");
+        heading.textContent = article.title;
+        box.appendChild(heading);
+
+        const meta = document.createElement("p");
+        meta.className = "news-meta";
+        meta.textContent = article.published_at
+          ? new Date(article.published_at).toLocaleString()
+          : "";
+        box.appendChild(meta);
+
+        if (article.image_url) {
+          const image = document.createElement("img");
+          image.className = "news-image";
+          image.src = article.image_url;
+          image.alt = article.title;
+          box.appendChild(image);
+        }
+
+        const summary = document.createElement("div");
+        summary.className = "news-summary";
+        summary.textContent = article.summary || "No summary available.";
+        box.appendChild(summary);
+
+        const source = document.createElement("a");
+        source.className = "news-source";
+        source.href = article.source_url;
+        source.target = "_blank";
+        source.rel = "noopener noreferrer";
+        source.textContent = "Read original report →";
+        box.appendChild(source);
+
+        const back = document.createElement("a");
+        back.className = "back-link";
+        back.href = "news.html";
+        back.textContent = "← Back to NEXORA News";
+        box.appendChild(back);
+
+      } catch (error) {
+        console.error(error);
+        box.textContent = "Unable to load this article. Please try again.";
+      }
+    }
+
+    loadArticle();
+  </script>
+</body>
+</html>
