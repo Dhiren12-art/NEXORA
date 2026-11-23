@@ -171,9 +171,7 @@
       card.appendChild(summary);
 
       const link = document.createElement("a");
-      link.href = a.source_url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
+      link.href = "news-article.html?id=" + encodeURIComponent(a.id);
       link.textContent = "Read Full Story →";
       card.appendChild(link);
 
