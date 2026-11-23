@@ -4,62 +4,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXORA | News Article</title>
+  <title>NEXORA | News</title>
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .news-article {
-      max-width: 850px;
-      margin: 45px auto;
-      padding: 28px;
-      background: linear-gradient(145deg,#1b1018,#10090e);
-      border: 1px solid rgba(214,160,165,.2);
-      border-radius: 20px;
+    body {
+      color: #f7eeee;
     }
-    .news-article h1 {
-      font-family: Georgia,serif;
-      font-size: clamp(28px,5vw,44px);
-      line-height: 1.2;
-      margin: 22px 0;
+
+    .news-reader {
+      max-width: 780px;
+      margin: 30px auto 60px;
+      padding: 0 18px;
     }
-    .news-meta { color: #c5a9b3; margin-bottom: 22px; }
-    .news-image {
-      width: 100%;
-      max-height: 480px;
-      object-fit: cover;
-      border-radius: 15px;
+
+    .reader-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 25px;
     }
-    .news-summary {
-      color: #eadde2;
-      font-size: 18px;
-      line-height: 1.9;
+
+    .reader-back {
+      color: #d6a0a5;
+      text-decoration: none;
+      font-size: 14px;
     }
-    .news-source, .back-link {
+
+    .reader-label {
+      color: #d6a0a5;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .reader-title {
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 6vw, 46px);
+      line-height: 1.18;
+      margin: 16px 0;
+      color: #fff1e8;
+    }
+
+    .reader-meta {
+      color: #bdaab2;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .reader-image-wrap {
+      width: 100%;
+      background: #10090e;
+      border: 1px solid rgba(214,160,165,.18);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 25px 0;
+    }
+
+    .reader-image {
+      display: block;
+      width: 100%;
+      max-height: 430px;
+      object-fit: contain;
+    }
+
+    .reader-content {
+      color: #eadde2;
+      font-size: 17px;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+    }
+
+    .reader-source-box {
+      margin-top: 35px;
+      padding: 20px;
+      border: 1px solid rgba(214,160,165,.22);
+      border-radius: 15px;
+      background: rgba(214,160,165,.04);
+    }
+
+    .reader-source-box p {
+      color: #c5a9b3;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .reader-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .reader-button {
       display: inline-block;
-      margin-top: 25px;
+      padding: 11px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .source-button {
+      background: #d6a0a5;
+      color: #160d12;
+    }
+
+    .back-button {
+      border: 1px solid rgba(214,160,165,.45);
+      color: #e3b5bb;
+    }
+
+    .reader-loading {
+      text-align: center;
+      padding: 70px 15px;
       color: #d6a0a5;
     }
+
     @media(max-width:600px) {
-      .news-article { margin:20px 12px; padding:20px; }
+      .news-reader {
+        margin-top: 22px;
+        padding: 0 16px;
+      }
+
+      .reader-title {
+        font-size: 31px;
+      }
+
+      .reader-image {
+        max-height: 300px;
+      }
+
+      .reader-content {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">NEXORA<span>.</span></div>
   </header>
 
-  <main class="news-article" id="article">
-    <p>Loading article...</p>
+  <main class="news-reader" id="article">
+    <div class="reader-loading">Loading article...</div>
   </main>
 
   <script>
-    const URL = "https://brqsolcojfxldrxfdnax.supabase.co";
-    const KEY = "sb_publishable_Se2OBOPmRlGVSIvMY-1W-w_tdJq3chD";
+    const SUPABASE_URL =
+      "https://brqsolcojfxldrxfdnax.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_Se2OBOPmRlGVSIvMY-1W-w_tdJq3chD";
+
+    function makeElement(tag, className, text) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text) element.textContent = text;
+      return element;
+    }
+
+    function getCategory(source) {
+      const value = (source || "").toLowerCase();
+
+      if (value.includes("india")) return "India News";
+      if (value.includes("business")) return "Business";
+      if (value.includes("technology")) return "Technology";
+      return "World News";
+    }
 
     async function loadArticle() {
       const box = document.getElementById("article");
-      const id = new URLSearchParams(location.search).get("id");
+      const id = new URLSearchParams(
+        window.location.search
+      ).get("id");
 
       if (!id || !/^\d+$/.test(id)) {
         box.textContent = "No valid article selected.";
@@ -68,14 +188,23 @@
 
       try {
         const response = await fetch(
-          URL + "/rest/v1/news_feed?id=eq." +
-          encodeURIComponent(id) + "&select=*&limit=1",
-          { headers: { apikey: KEY } }
+          SUPABASE_URL +
+          "/rest/v1/news_feed?id=eq." +
+          encodeURIComponent(id) +
+          "&select=*&limit=1",
+          {
+            headers: {
+              apikey: SUPABASE_KEY
+            }
+          }
         );
 
-        if (!response.ok) throw new Error("Database error " + response.status);
+        if (!response.ok) {
+          throw new Error("Database error " + response.status);
+        }
 
         const rows = await response.json();
+
         if (!rows.length) {
           box.textContent = "Article not found.";
           return;
@@ -84,52 +213,129 @@
         const article = rows[0];
         box.replaceChildren();
 
-        const category = document.createElement("p");
-        category.className = "gold";
-        category.textContent = article.source_name || "NEXORA NEWS";
-        box.appendChild(category);
+        const top = makeElement("div", "reader-top");
+        const backTop = makeElement(
+          "a",
+          "reader-back",
+          "← Back to News"
+        );
+        backTop.href = "news.html";
+        top.appendChild(backTop);
+        top.appendChild(
+          makeElement("span", "reader-label", "NEXORA NEWS")
+        );
+        box.appendChild(top);
 
-        const heading = document.createElement("h1");
-        heading.textContent = article.title;
-        box.appendChild(heading);
+        box.appendChild(
+          makeElement(
+            "div",
+            "reader-label",
+            getCategory(article.source_name)
+          )
+        );
 
-        const meta = document.createElement("p");
-        meta.className = "news-meta";
-        meta.textContent = article.published_at
-          ? new Date(article.published_at).toLocaleString()
-          : "";
-        box.appendChild(meta);
+        box.appendChild(
+          makeElement("h1", "reader-title", article.title)
+        );
+
+        const date = article.published_at
+          ? new Date(article.published_at).toLocaleString(
+              "en-IN",
+              {
+                dateStyle: "long",
+                timeStyle: "short"
+              }
+            )
+          : "Date unavailable";
+
+        box.appendChild(
+          makeElement(
+            "p",
+            "reader-meta",
+            (article.source_name || "NEXORA News") +
+            " • " + date
+          )
+        );
 
         if (article.image_url) {
-          const image = document.createElement("img");
-          image.className = "news-image";
+          const imageWrap = makeElement(
+            "div",
+            "reader-image-wrap"
+          );
+
+          const image = makeElement(
+            "img",
+            "reader-image"
+          );
+
           image.src = article.image_url;
-          image.alt = article.title;
-          box.appendChild(image);
+          image.alt = article.title || "News image";
+          image.loading = "eager";
+          image.onerror = () => imageWrap.remove();
+
+          imageWrap.appendChild(image);
+          box.appendChild(imageWrap);
         }
 
-        const summary = document.createElement("div");
-        summary.className = "news-summary";
-        summary.textContent = article.summary || "No summary available.";
-        box.appendChild(summary);
+        const content = makeElement(
+          "div",
+          "reader-content"
+        );
 
-        const source = document.createElement("a");
-        source.className = "news-source";
-        source.href = article.source_url;
-        source.target = "_blank";
-        source.rel = "noopener noreferrer";
-        source.textContent = "Read original report →";
-        box.appendChild(source);
+        content.textContent =
+          article.summary || "No additional summary is available.";
 
-        const back = document.createElement("a");
-        back.className = "back-link";
+        box.appendChild(content);
+
+        const sourceBox = makeElement(
+          "section",
+          "reader-source-box"
+        );
+
+        sourceBox.appendChild(
+          makeElement("strong", "", "About this report")
+        );
+
+        sourceBox.appendChild(
+          makeElement(
+            "p",
+            "",
+            "This report is presented by NEXORA using available publisher information. Visit the original publisher for the complete report and further updates."
+          )
+        );
+
+        const actions = makeElement(
+          "div",
+          "reader-actions"
+        );
+
+        const original = makeElement(
+          "a",
+          "reader-button source-button",
+          "Visit Original Publisher ↗"
+        );
+
+        original.href = article.source_url;
+        original.target = "_blank";
+        original.rel = "noopener noreferrer";
+
+        const back = makeElement(
+          "a",
+          "reader-button back-button",
+          "More News"
+        );
+
         back.href = "news.html";
-        back.textContent = "← Back to NEXORA News";
-        box.appendChild(back);
+
+        actions.appendChild(original);
+        actions.appendChild(back);
+        sourceBox.appendChild(actions);
+        box.appendChild(sourceBox);
 
       } catch (error) {
         console.error(error);
-        box.textContent = "Unable to load this article. Please try again.";
+        box.textContent =
+          "Unable to load this article. Please refresh and try again.";
       }
     }
 
