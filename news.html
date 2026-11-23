@@ -186,7 +186,26 @@
       render();
     });
   });
+  document.querySelectorAll(".category-card").forEach(card => {
+    function selectCategory() {
+      filter = card.dataset.category;
+      buttons.forEach(b =>
+        b.classList.toggle("active", b.dataset.filter === filter)
+      );
+      render();
+      document.getElementById("latest-news").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
 
+    card.addEventListener("click", selectCategory);
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectCategory();
+      }
+    });
+  });
   async function loadNews() {
     try {
       const response = await fetch(
