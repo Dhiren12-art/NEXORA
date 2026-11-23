@@ -144,7 +144,7 @@ def main():
                 title = clean_text(entry.get("title"))
                 link = entry.get("link")
 
-                  if not title or not link:
+                if not title or not link:
                     continue
 
                 summary_text = clean_text(entry.get("summary", ""))
