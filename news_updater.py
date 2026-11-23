@@ -15,6 +15,7 @@ SUPABASE_KEY = os.environ["SUPABASE_KEY"]
 
 FEEDS = {
     "BBC News": "https://feeds.bbci.co.uk/news/rss.xml",
+    "BBC India": "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml",
     "BBC World": "https://feeds.bbci.co.uk/news/world/rss.xml",
     "BBC Business": "https://feeds.bbci.co.uk/news/business/rss.xml",
     "BBC Technology": "https://feeds.bbci.co.uk/news/technology/rss.xml",
