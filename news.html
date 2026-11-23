@@ -63,9 +63,16 @@
   <h2>Latest Articles from NEXORA</h2>
   <p>Stay updated with the latest headlines.</p>
 
-  <div id="liveNewsArticles">
-    <p>Latest news will appear here.</p>
-  </div>
+  <div id="newsFilters">
+  <button data-filter="all">All News</button>
+  <button data-filter="india">India</button>
+  <button data-filter="world">World</button>
+  <button data-filter="business">Business</button>
+  <button data-filter="technology">Technology</button>
+</div>
+
+<p id="newsStatus">Loading news...</p>
+<div id="liveNewsArticles"></div>
 </section>
   
 <footer>
@@ -73,7 +80,136 @@
   <p>Everything. In One Place.</p>
   <p>© 2026 NEXORA</p>
 </footer>
+<style>
+#newsFilters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:20px 0;
+}
+#newsFilters button {
+  padding:10px 16px;
+  border-radius:25px;
+  border:1px solid #684253;
+  background:#21131c;
+  color:#d6a0a5;
+}
+#newsFilters button.active {
+  background:#d6a0a5;
+  color:#160d13;
+}
+#liveNewsArticles {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+}
+#liveNewsArticles .news-card { margin:0; }
+#liveNewsArticles img {
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  border-radius:12px;
+}
+</style>
 
+<script>
+(() => {
+  const url = "https://brqsolcojfxldrxfdnax.supabase.co";
+  const key = "sb_publishable_Se2OBOPmRlGVSIvMY-1W-1W-1W";
+  const container = document.getElementById("liveNewsArticles");
+  const status = document.getElementById("newsStatus");
+  const buttons = document.querySelectorAll("#newsFilters button");
+
+  let articles = [];
+  let filter = "all";
+
+  function category(source) {
+    source = (source || "").toLowerCase();
+    if (source.includes("india")) return "india";
+    if (source.includes("business")) return "business";
+    if (source.includes("technology")) return "technology";
+    return "world";
+  }
+
+  function render() {
+    container.replaceChildren();
+
+    const results = filter === "all"
+      ? articles
+      : articles.filter(a => category(a.source_name) === filter);
+
+    if (!results.length) {
+      status.textContent = "No articles found in this category yet.";
+      return;
+    }
+
+    status.textContent = results.length + " articles available";
+
+    results.forEach(a => {
+      const card = document.createElement("article");
+      card.className = "card news-card";
+
+      if (a.image_url) {
+        const img = document.createElement("img");
+        img.src = a.image_url;
+        img.alt = a.title;
+        img.loading = "lazy";
+        img.onerror = () => img.remove();
+        card.appendChild(img);
+      }
+
+      const source = document.createElement("span");
+      source.textContent = a.source_name || "NEXORA NEWS";
+      card.appendChild(source);
+
+      const heading = document.createElement("h3");
+      heading.textContent = a.title;
+      card.appendChild(heading);
+
+      const summary = document.createElement("p");
+      summary.textContent = a.summary || "";
+      card.appendChild(summary);
+
+      const link = document.createElement("a");
+      link.href = a.source_url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Read Full Story →";
+      card.appendChild(link);
+
+      container.appendChild(card);
+    });
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      filter = button.dataset.filter;
+      buttons.forEach(b => b.classList.toggle("active", b === button));
+      render();
+    });
+  });
+
+  async function loadNews() {
+    try {
+      const response = await fetch(
+        url + "/rest/v1/news_feed?select=*&order=published_at.desc&limit=60",
+        { headers: { apikey: key } }
+      );
+
+      if (!response.ok) throw new Error("Supabase error: " + response.status);
+
+      articles = await response.json();
+      buttons[0].classList.add("active");
+      render();
+    } catch (error) {
+      console.error(error);
+      status.textContent = "News could not load. Please refresh.";
+    }
+  }
+
+  loadNews();
+})();
+  </script>
 <script src="script.js"></script>
 </body>
 </html>
