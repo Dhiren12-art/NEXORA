@@ -87,6 +87,20 @@ def get_image(entry, link):
 
     return None
 
+SPORT_KEYWORDS = [
+    "cricket", "ipl", "t20", "odi", "test match",
+    "football", "soccer", "tennis", "badminton",
+    "hockey", "basketball", "wrestling", "boxing",
+    "world cup", "champions trophy", "premier league",
+    "wpl", "wbbL", "ashes", "fifa", "olympics",
+    "match result", "playing xi", "innings",
+    "wicket", "batter", "bowler"
+]
+
+def is_sports_story(title, summary):
+    text = (title + " " + summary).lower()
+    return any(word in text for word in SPORT_KEYWORDS)
+    
 def published(entry):
     parsed = entry.get("published_parsed") or entry.get("updated_parsed")
     if parsed:
@@ -108,7 +122,11 @@ def main():
 
                 if not title or not link:
                     continue
+summary_text = clean_text(entry.get("summary", ""))
 
+if is_sports_story(title, summary_text):
+    print("SKIPPED SPORTS:", title)
+    continue
                 image = get_image(entry, link)
 
                 article = {
