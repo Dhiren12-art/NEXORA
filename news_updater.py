@@ -148,6 +148,77 @@ def published(entry):
         ).isoformat()
     return datetime.now(timezone.utc).isoformat()
 
+def generate_nexora_article(title, summary, source_name):
+    api_key = os.environ.get("GEMINI_API_KEY")
+
+    if not api_key:
+        print("GEMINI API KEY MISSING")
+        return None
+
+    if len(summary.strip()) < 350:
+        print("INSUFFICIENT SOURCE MATERIAL:", title)
+        return None
+
+    prompt = f"""
+You are a careful news writer for NEXORA.
+
+Write an original news report using ONLY the supplied information.
+
+Rules:
+- Never invent facts, quotes, names or statistics.
+- Never copy the source wording.
+- Do not add unsupported details.
+- Write 4 to 6 clear paragraphs.
+- Use neutral, professional news language.
+- If there is insufficient information, return NEEDS_REVIEW.
+
+Publisher: {source_name}
+Headline: {title}
+
+Source information:
+{summary}
+"""
+
+    try:
+        response = session.post(
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+            headers={
+                "x-goog-api-key": api_key,
+                "Content-Type": "application/json"
+            },
+            json={
+                "contents": [{
+                    "parts": [{"text": prompt}]
+                }],
+                "generationConfig": {
+                    "temperature": 0.2,
+                    "maxOutputTokens": 900
+                }
+            },
+            timeout=60
+        )
+
+        response.raise_for_status()
+        data = response.json()
+
+        article_text = "".join(
+            part.get("text", "")
+            for candidate in data.get("candidates", [])
+            for part in candidate.get("content", {}).get("parts", [])
+        ).strip()
+
+        if (
+            not article_text
+            or "NEEDS_REVIEW" in article_text.upper()
+            or len(article_text) < 500
+        ):
+            return None
+
+        return article_text
+
+    except Exception as error:
+        print("GEMINI ERROR:", error)
+        return None
 def main():
     articles = []
 
