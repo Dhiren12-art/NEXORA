@@ -177,10 +177,21 @@
       summary.textContent = a.summary || "";
       card.appendChild(summary);
 
-      const link = document.createElement("a");
-      link.href = "news-article.html?id=" + encodeURIComponent(a.id);
-      link.textContent = "Read Full Story →";
-      card.appendChild(link);
+      card.setAttribute("role", "link");
+      card.setAttribute("tabindex", "0");
+      card.style.cursor = "pointer";
+
+      function openArticle() {
+        window.location.href = "news-article.html?id=" + encodeURIComponent(a.id);
+      }
+
+      card.addEventListener("click", openArticle);
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openArticle();
+        }
+      });
 
       container.appendChild(card);
     });
