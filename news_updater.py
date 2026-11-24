@@ -265,6 +265,20 @@ def main():
                     "source_url": link,
                     "published_at": published(entry)
                 }
+                                generated = generate_nexora_article(
+                    title,
+                    article["summary"],
+                    source
+                )
+
+                if generated:
+                    article["article_content"] = generated
+                    article["article_status"] = "published"
+                    article["generated_at"] = datetime.now(
+                        timezone.utc
+                    ).isoformat()
+                else:
+                    article["article_status"] = "needs_review"
 
                 if image:
                     article["image_url"] = image
