@@ -220,8 +220,10 @@ Source information:
         print("GEMINI ERROR:", error)
         return None
 def main():
+def main():
     articles = []
-        existing_response = session.get(
+
+    existing_response = session.get(
         f"{SUPABASE_URL}/rest/v1/news_feed",
         params={"select": "source_url,article_content", "limit": "1000"},
         headers={"apikey": SUPABASE_KEY},
@@ -230,9 +232,9 @@ def main():
     existing_response.raise_for_status()
 
     existing_articles = {
-    item["source_url"]: item.get("article_content")
-    for item in existing_response.json()
-}
+        item["source_url"]: item.get("article_content")
+        for item in existing_response.json()
+    }
 
     for source, url in FEEDS.items():
         try:
