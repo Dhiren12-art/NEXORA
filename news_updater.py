@@ -265,7 +265,7 @@ def main():
                     "source_url": link,
                     "published_at": published(entry)
                 }
-                                generated = generate_nexora_article(
+                   generated = generate_nexora_article(
                     title,
                     article["summary"],
                     source
