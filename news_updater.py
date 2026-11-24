@@ -47,10 +47,11 @@ def valid_image(url, base=None):
     return url
 
 
+
 def get_image(entry, link):
     candidates = []
 
-    # Prefer full-size media images over thumbnails
+    # Collect RSS images and their dimensions
     for field in ["media_content", "media_thumbnail"]:
         items = entry.get(field, []) or []
         if isinstance(items, dict):
@@ -68,45 +69,50 @@ def get_image(entry, link):
 
                     candidates.append((width * height, image))
 
-    # Use the largest available image
+    # Prefer a high-resolution publisher image
+    try:
+        response = session.get(link, timeout=12)
+        response.raise_for_status()
+
+        for tag in re.findall(r'<meta\b[^>]*>', response.text, re.I):
+            image_tag = re.search(
+                r'(?:property|name)\s*=\s*["\'](?:og:image|twitter:image)["\']',
+                tag, re.I
+            )
+            content = re.search(
+                r'content\s*=\s*["\']([^"\']+)["\']',
+                tag, re.I
+            )
+
+            if image_tag and content:
+                image = valid_image(content.group(1), response.url)
+                if image:
+                    return image
+
+    except Exception as error:
+        print("High-resolution image lookup:", error)
+
+    # Fall back to the largest RSS image
     if candidates:
         candidates.sort(reverse=True)
         return candidates[0][1]
 
-    # Check image links in the RSS entry
+    # Check RSS image links
     for item in entry.get("links", []) or []:
         if item.get("type", "").startswith("image/"):
             image = valid_image(item.get("href"), link)
             if image:
                 return image
 
-    # Check the RSS summary for an image
+    # Check RSS summary
     summary = entry.get("summary", "")
     match = re.search(
         r'<img[^>]+src=["\']([^"\']+)["\']',
-        summary,
-        re.I
+        summary, re.I
     )
+
     if match:
         return valid_image(match.group(1), link)
-
-    # Last option: publisher's social preview image
-    try:
-        response = session.get(link, timeout=12)
-        response.raise_for_status()
-
-        patterns = [
-            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
-            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)'
-        ]
-
-        for pattern in patterns:
-            match = re.search(pattern, response.text, re.I)
-            if match:
-                return valid_image(match.group(1), response.url)
-
-    except Exception as error:
-        print("Image lookup:", error)
 
     return None
 
