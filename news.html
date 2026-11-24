@@ -123,21 +123,28 @@
   let articles = [];
   let filter = "all";
 
-  function category(source) {
-    source = (source || "").toLowerCase();
-    if (source.includes("india")) return "india";
-    if (source.includes("business")) return "business";
-    if (source.includes("technology")) return "technology";
-    return "world";
-  }
+  function category(article) {
+  const source = (article.source_name || "").toLowerCase();
+  const text = ((article.title || "") + " " + (article.summary || "")).toLowerCase();
+
+  if (source.includes("business") ||
+      /\b(business|company|companies|stock market|share price|earnings|economy|inflation|investor|banking|startup|ceo|revenue|profit)\b/.test(text)) return "business";
+
+  if (source.includes("technology") ||
+      /\b(technology|tech|artificial intelligence|ai|smartphone|iphone|android|cybersecurity|software|chipmaker|semiconductor|robotics)\b/.test(text)) return "technology";
+
+  if (source.includes("india") ||
+      /\b(india|indian|new delhi|mumbai|kolkata|chennai|bengaluru|bangalore|hyderabad|ahmedabad|gujarat|maharashtra|uttar pradesh|rajasthan|bihar|kerala|tamil nadu|karnataka|modi government|lok sabha|rajya sabha|rupee)\b/.test(text)) return "india";
+
+  return "world";
+}
 
   function render() {
     container.replaceChildren();
 
     const results = filter === "all"
       ? articles
-      : articles.filter(a => category(a.source_name) === filter);
-
+      : articles.filter(a => category(a) === filter)
     if (!results.length) {
       status.textContent = "No articles found in this category yet.";
       return;
