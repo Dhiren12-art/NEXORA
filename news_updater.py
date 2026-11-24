@@ -112,19 +112,28 @@ def get_image(entry, link):
 
 
 SPORT_KEYWORDS = [
-    "cricket", "ipl", "t20", "odi", "test match",
-    "football", "soccer", "tennis", "badminton",
-    "hockey", "basketball", "wrestling", "boxing",
-    "world cup", "champions trophy", "premier league",
-    "wpl", "wbbL", "ashes", "fifa", "olympics",
-    "match result", "playing xi", "innings",
-    "wicket", "batter", "bowler"
+    "cricket", "ipl", "t20", "odi", "test match", "wpl", "wbbl",
+    "ashes", "wicket", "batter", "bowler", "innings", "run out",
+    "football", "soccer", "fifa", "premier league", "champions league",
+    "europa league", "la liga", "serie a", "bundesliga", "fa cup",
+    "tennis", "badminton", "hockey", "basketball", "wrestling",
+    "boxing", "rugby", "golf", "athletics", "marathon", "swimming",
+    "cycling", "volleyball", "table tennis", "formula 1", "formula one",
+    "f1", "grand prix", "motogp", "nascar", "motorsport",
+    "olympics", "paralympics", "commonwealth games", "wimbledon",
+    "us open", "french open", "australian open", "nba", "nfl", "nhl",
+    "mlb", "champions trophy", "match result", "sports tournament"
 ]
 
 def is_sports_story(title, summary):
     text = (title + " " + summary).lower()
-    return any(word in text for word in SPORT_KEYWORDS)
-    
+    return any(
+        re.search(
+            r"(?<![a-z0-9])" + re.escape(word) + r"(?![a-z0-9])",
+            text
+        )
+        for word in SPORT_KEYWORDS
+    )
 def published(entry):
     parsed = entry.get("published_parsed") or entry.get("updated_parsed")
     if parsed:
