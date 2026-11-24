@@ -282,10 +282,19 @@
           "reader-content"
         );
 
-        content.textContent =
-          article.summary || "No additional summary is available.";
+        const fullText =
+  article.article_content || article.summary ||
+  "No additional information is available.";
 
-        box.appendChild(content);
+fullText
+  .split(/\n\s*\n/)
+  .map(p => p.trim())
+  .filter(Boolean)
+  .forEach(p => {
+    content.appendChild(makeElement("p", "", p));
+  });
+
+box.appendChild(content);
 
         const sourceBox = makeElement(
           "section",
