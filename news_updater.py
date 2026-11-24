@@ -221,6 +221,18 @@ Source information:
         return None
 def main():
     articles = []
+        existing_response = session.get(
+        f"{SUPABASE_URL}/rest/v1/news_feed",
+        params={"select": "source_url,article_content", "limit": "1000"},
+        headers={"apikey": SUPABASE_KEY},
+        timeout=30
+    )
+    existing_response.raise_for_status()
+
+    existing_articles = {
+    item["source_url"]: item.get("article_content")
+    for item in existing_response.json()
+}
 
     for source, url in FEEDS.items():
         try:
@@ -232,7 +244,8 @@ def main():
 
                 if not title or not link:
                     continue
-
+                if existing_articles.get(link):
+                    continue
                 summary_text = clean_text(entry.get("summary", ""))
 
                 if is_sports_story(title, summary_text):
