@@ -219,7 +219,7 @@ Source information:
     except Exception as error:
         print("GEMINI ERROR:", error)
         return None
-def main():
+        
 def main():
     articles = []
 
